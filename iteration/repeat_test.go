@@ -9,17 +9,20 @@ func TestRepeat(t *testing.T) {
 	t.Run("Valid repeat", func(t *testing.T) {
 		repeated := Repeat("a", 5)
 		expected := "aaaaa"
-		if repeated != expected {
-			t.Errorf("expected %q, but repeated %q", repeated, expected)
-		}
+		assertCorrectMessage(t, repeated, expected)
 	})
 	t.Run("Caller to specify repeat", func(t *testing.T) {
 		repeated := Repeat("a", 3)
 		expected := "aaa"
-		if repeated != expected {
-			t.Errorf("expected %q, but repeated %q", repeated, expected)
-		}
+		assertCorrectMessage(t, repeated, expected)
 	})
+}
+
+func assertCorrectMessage(t testing.TB, repeated, expected string) {
+	t.Helper()
+	if repeated != expected {
+		t.Errorf("expected %q, but repeated %q", repeated, expected)
+	}
 }
 
 func BenchmarkRepeat(b *testing.B) {
