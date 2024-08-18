@@ -3,6 +3,11 @@ package main
 import "testing"
 
 func TestHello(t *testing.T) {
+	t.Run("greeting in French", func(t *testing.T) {
+		got := hello("Frank", "French")
+        want := "Bonjour, Frank"
+        assertCorrectMessage(t, got, want)
+	})
 	t.Run("greetting in Spanish", func(t *testing.T) {
 		got := hello("Elodie", "Spanish")
 		want := "Hola, Elodie"
