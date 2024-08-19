@@ -9,10 +9,24 @@ func Sum(arr []int) int {
 }
 
 func SumAll(numbersToSum ...[]int) []int {
-	sums := make([]int, len(numbersToSum))
+	var sums []int
 
-	for i, numbers := range numbersToSum {
-		sums[i] = Sum(numbers)
+	for _, numbers := range numbersToSum {
+		sums = append(sums, Sum(numbers))
+	}
+	return sums
+}
+
+func SumAllTails(numbers ...[]int) []int {
+	sums := []int{}
+
+	for _, numbers := range numbers {
+		if len(numbers) == 0 {
+			sums = append(sums, 0)
+		} else {
+			tails := numbers[1:]
+			sums = append(sums, Sum(tails))
+		}
 	}
 	return sums
 }
